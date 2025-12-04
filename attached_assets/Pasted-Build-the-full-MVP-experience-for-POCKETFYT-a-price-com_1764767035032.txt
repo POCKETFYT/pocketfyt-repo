@@ -1,0 +1,378 @@
+Build the full MVP experience for POCKETFYT, a price comparison and discovery platform that connects Buyers, Sellers and Wholesalers. The system must include homepage, onboarding, dashboards, product upload features, cash buying options, wholesale tiers, location based matching and real time price display.
+
+1. BRAND IDENTITY FOR THE BUILD
+
+Brand Name: POCKETFYT
+Tagline: Prices that fit your pocket
+
+Color Palette:
+
+Primary Orange: #FF6B00
+
+Secondary Dark Wallet Gray: #333333
+
+Accent Green (cash vibe): #3CCF4E
+
+Text White: #FFFFFF
+
+Background Light Cream: #FFF6EB
+
+Brand Style:
+Bright, friendly, bold, simple, reliable.
+Everything must feel affordable, accessible and fast.
+
+UI Styling Rules:
+
+Use the primary orange for headers, buttons and CTA areas.
+
+Use gray for card outlines and dashboards.
+
+Use green only as accent for cash prices or verification.
+
+Rounded corners for all cards.
+
+Clean sans serif typography.
+
+Simple layouts. No clutter.
+
+2. HOMEPAGE STRUCTURE
+
+The homepage must be the first screen before Get Started appears.
+
+Layout
+
+Header:
+
+Logo left
+
+Login right
+
+Hero section:
+
+Title: “Find the best price that fits your pocket”
+
+Subtitle: “Compare prices across verified sellers in your area”
+
+Button: “Get Started”, styled in primary orange
+
+Popular Items section
+
+Beans 1500
+
+Rice 1500
+
+Bread 1500
+
+Pizza 1500
+
+Wholesale Preview section
+
+50 bags Beans 500000
+
+20 bags Rice 180000
+
+10 crates Drinks 55000
+
+Footer with contact and legal
+
+3. GET STARTED FLOW
+
+After clicking Get Started, show a role selection.
+
+Select your role:
+
+Sign up as Buyer
+
+Sign up as Seller
+
+Sign up as Wholesaler
+
+Login as Buyer
+
+Login as Seller
+
+Login as Wholesaler
+
+4. LOCATION BASED MATCHING ENGINE
+
+This rule must guide the entire system logic.
+
+Buyer Matching Logic:
+
+Buyers are matched to sellers based on location first.
+
+Location filtering applies to all retail products.
+
+If a buyer chooses wholesale or large quantities, override the location rule and show national level wholesalers.
+
+Retail products should prioritize sellers within the same city.
+
+If no city matches, show nearest sellers in surrounding areas.
+
+Show shipping cost estimates on product cards when distance is high.
+
+Implementation:
+
+Each product must store location coordinates.
+
+Each user must store location on signup.
+
+API returns products sorted by closest seller.
+
+5. ACCOUNT TYPES AND DASHBOARDS
+Buyer Dashboard
+
+Local products feed
+
+Popular products
+
+Buy with cash option
+
+Price comparison across nearest sellers
+
+Saved items
+
+Notifications
+
+Seller Dashboard
+
+Upload product
+
+Manage inventory
+
+Real time price editing
+
+Buyer interactions
+
+Analytics
+
+Wholesaler Dashboard
+
+Bulk upload
+
+Tier pricing
+
+Inventory
+
+Bulk buyers
+
+Logistics options
+
+6. PRODUCT FEEDS
+Retail Feed
+
+Items at small unit sizes
+
+Example prices
+
+Compare button
+
+Location badge showing distance
+
+Wholesale Feed
+
+Large quantities
+
+Tier prices
+
+Delivery options
+
+7. PRODUCT UPLOAD FLOW
+
+Upload Product Form Components:
+
+Upload Image (real time preview)
+
+Product name
+
+Category
+
+Retail price
+
+Wholesale price (optional)
+
+Tier price builder for wholesalers
+
+Stock quantity
+
+Location auto detect
+
+Image compression
+
+8. UI COMPONENT NAMES
+
+HomepageHero
+
+RoleSelector
+
+RetailProductCard
+
+WholesaleProductCard
+
+UploadProductForm
+
+PriceCompareList
+
+BuyerDashboardMain
+
+SellerDashboardMain
+
+WholesalerDashboardMain
+
+LocationSelector
+
+CashBuyButton
+
+TierPricingSection
+
+9. BUTTON TEXTS
+
+Get Started
+
+Sign up as Buyer
+
+Sign up as Seller
+
+Sign up as Wholesaler
+
+Login
+
+Upload Product
+
+Compare Prices
+
+Buy with Cash
+
+Add Stock
+
+Save Item
+
+Publish Now
+
+10. DATABASE SCHEMA (UPDATED)
+USERS
+
+user_id
+
+name
+
+email
+
+phone
+
+password_hash
+
+role
+
+city
+
+state
+
+lat
+
+lng
+
+created_at
+
+PRODUCTS
+
+product_id
+
+seller_id
+
+product_name
+
+category
+
+retail_price
+
+wholesale_price
+
+image_url
+
+quantity
+
+city
+
+state
+
+lat
+
+lng
+
+created_at
+
+WHOLESALE_TIERS
+
+tier_id
+
+product_id
+
+min_quantity
+
+price_per_unit
+
+BUYER_ACTIONS
+
+buyer_id
+
+product_id
+
+saved
+
+viewed
+
+timestamp
+
+ANALYTICS
+
+seller_id
+
+product_views
+
+product_clicks
+
+daily_sales
+
+11. LOCATION MATCHING API SPEC
+Auth
+
+POST /auth/signup
+POST /auth/login
+
+User Role
+
+GET /user/{id}/role
+
+Products
+
+POST /product/upload
+GET /product/retail?lat=&lng=&radius=
+GET /product/wholesale
+GET /product/{product_id}
+
+Price Compare
+
+GET /compare/{product_id}?lat=&lng=
+
+Seller Controls
+
+POST /seller/update-price
+POST /seller/update-stock
+
+12. TECHNICAL FLOW
+
+User → Homepage
+→ Get Started
+→ Choose role
+→ Signup or login
+→ Dashboard
+→ Buyer sees closest sellers
+→ Seller uploads product
+→ Product shows for buyers in same city
+→ Wholesale override when buyer chooses bulk
+→ Order flow
+
+13. FINAL INSTRUCTIONS FOR THE AGENT
+
+Build the complete MVP using all specifications above. Apply the brand colors provided. Prioritize location based seller matching for retail buyers. Allow override for wholesale buyers. Maintain all UI components, database structure, product flows and dashboard functions exactly as defined.
